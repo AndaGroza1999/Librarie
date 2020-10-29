@@ -14,19 +14,21 @@ public class Plata extends Carte implements PayInterface {
         return ((getPret() * cantitate) * TVA) + (getPret() * cantitate);
     }
 
-    @Override
-    public void calculInFunctieDeMoneda(String tipMoneda) {
+    public void calculInFunctieDeMoneda(String tipMoneda, int cantitate) {
         switch (tipMoneda)
         {
             case "RON":
+                System.out.println(((getPret() * cantitate) * TVA + (getPret() * cantitate)));
                 break;
             case "EURO":
+                System.out.println(((getPret() * cantitate) * TVA + (getPret() * cantitate)) * 4.5);
                 break;
             case "DOLAR":
+                System.out.println(((getPret() * cantitate) * TVA + (getPret() * cantitate)) * 4.1);
                 break;
             default:
+                System.out.println("Eroare!!");
                 break;
-
         }
     }
 
