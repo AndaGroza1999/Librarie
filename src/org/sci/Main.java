@@ -30,6 +30,12 @@ public class Main {
 
         System.out.println("Cartile sunt egale: " + c.equals(c1)); //-> false = obiectele nu sunt egale(au acelasi autor, dar titlurile sunt diferie)
 
+        //up-casting
+        Carte c2 = (Carte) new Nuvela("mister");
+        c2.setNumeCarte("Crima din Orient Express");
+        c2.setNumeAutor(new String[]{"Agatha Christie"});
+        System.out.println(c2.getNumeCarte() + " by " + Arrays.toString(c2.getNumeAutor()) + " //up-casting");
+
         //UTILIZATOR
         //u un obiect de tipul Utilizator
         Utilizator u = new Utilizator();
@@ -48,6 +54,10 @@ public class Main {
         n.setNumeAutor(new String[]{"Liviu Rebreanu"});
         n.setEditura("Biblioteca Adevarul");
         n.afisare();
+
+        //down-casting
+        Nuvela n1 = (Nuvela) c2;
+        System.out.println(n1.getNumeCarte() + " by " + Arrays.toString(n1.getNumeAutor()) + n1.getGen() + " //down-casting");
 
 
         //PLATA

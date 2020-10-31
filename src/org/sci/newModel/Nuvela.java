@@ -9,7 +9,7 @@ public class Nuvela extends Carte {
 
     //Constructor cu 1 parametru    //super cu paranteze(super();)
     public Nuvela(String gen) {
-        //super(); //am apelat constructorul fara parametrii/default din parinte(clasa Carte)
+        super(); //am apelat constructorul fara parametrii/default din parinte(clasa Carte)
         this.gen = gen;
     }
 
