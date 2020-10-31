@@ -7,9 +7,9 @@ import java.util.Arrays;
 public class Nuvela extends Carte {
     String gen;
 
-    //Constructor cu 1 parametru //super cu paranteze(super();)
+    //Constructor cu 1 parametru    //super cu paranteze(super();)
     public Nuvela(String gen) {
-        super(); //am apelat constructorul fara parametrii/default din parinte(clasa Carte)
+        //super(); //am apelat constructorul fara parametrii/default din parinte(clasa Carte)
         this.gen = gen;
     }
 
@@ -22,7 +22,7 @@ public class Nuvela extends Carte {
         this.gen = gen;
     }
 
-    public int getId() {
+    public int getId() { //am suprascris/overbidding setter-ul getId()
         return id = 101;
     }
 

@@ -8,12 +8,12 @@ public class Plata extends Carte implements PayInterface {
     private int cantitate;
     private final double TVA = 0.19; //const-ul din c++
 
-
-    //Metoda calculare valoare
+    //Metoda calculare valoare comanda
     public Double calculareValoare(int cantitate) {
         return ((getPret() * cantitate) * TVA) + (getPret() * cantitate);
     }
 
+    //Metoda calculare valoare comanda in functie de moneda in care se face plata
     public void calculInFunctieDeMoneda(String tipMoneda, int cantitate) {
         switch (tipMoneda)
         {
@@ -56,5 +56,4 @@ public class Plata extends Carte implements PayInterface {
     public void setCantitate(int cantitate) {
         this.cantitate = cantitate;
     }
-
 }

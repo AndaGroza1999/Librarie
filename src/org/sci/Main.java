@@ -44,6 +44,9 @@ public class Main {
         //n un obiect de tipul Nuvela
         Nuvela n = new Nuvela("crima");
         System.out.println(n.getNumeCarte() + n.getGen());
+        n.setNumeCarte("Ion");
+        n.setNumeAutor(new String[]{"Liviu Rebreanu"});
+        n.setEditura("Biblioteca Adevarul");
         n.afisare();
 
 
@@ -53,5 +56,6 @@ public class Main {
         p.setCantitate(5);
         p.setPret(15.25);
         System.out.println(p.calculareValoare(p.getCantitate())); //-> ((5 * 15.25) * 0.19) + (5 * 15.25) = 90.73
+        p.calculInFunctieDeMoneda("DOLAR", 5); //-> (15.25 * 5) * 0.19 + (15.25 * 5)) * 4.1 = 372.023
     }
 }

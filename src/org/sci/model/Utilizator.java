@@ -2,12 +2,12 @@ package org.sci.model;
 
 import org.sci.interfaces.UserInterface;
 
-public class Utilizator implements UserInterface {
+public class Utilizator extends Carte implements UserInterface {
     String numeUtilizator; //package-private
     String parola; //package-private
     String eMail; //package-private
     String stareCont; // online/offline   //package-private
-    Carte carti[]; //package-private
+    Carte[] carti; //package-private
 
     //Constructor default/fara parametrii
     public Utilizator() {
@@ -60,13 +60,5 @@ public class Utilizator implements UserInterface {
 
     public void setStareCont(String stareCont) {
         this.stareCont = stareCont;
-    }
-
-    public Carte[] getCarti() {
-        return carti;
-    }
-
-    public void setCarti(Carte[] carti) {
-        this.carti = carti;
     }
 }
