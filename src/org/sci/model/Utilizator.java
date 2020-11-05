@@ -16,6 +16,9 @@ public class Utilizator extends Carte implements UserInterface {
         eMail = "anonim@ceva.altceva";
         stareCont = "offline";
         carti = new Carte[]{};
+        for (int i = 0; i < carti.length; i++) {
+            carti[i] = new Carte();
+        }
     }
 
     //Metoda pentru conectarea la cont
@@ -62,3 +65,4 @@ public class Utilizator extends Carte implements UserInterface {
         this.stareCont = stareCont;
     }
 }
+

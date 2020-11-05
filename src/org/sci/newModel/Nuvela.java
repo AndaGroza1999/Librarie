@@ -28,9 +28,9 @@ public class Nuvela extends Carte {
 
     //super cu punct(super.getId())
     public void afisare() {
-        System.out.println("Cartea " + this.getNumeCarte() + " scrisa de " + Arrays.toString(this.getNumeAutor()) + " cu id-ul " + super.getId() + " a fost publicata in anul " +
+        System.out.println("Cartea " + '\u0022' + this.getNumeCarte() + '\u0022' + " scrisa de " + Arrays.toString(this.getNumeAutor()).replace("[", "").replace("]", "") + " cu id-ul " + super.getId() + " a fost publicata in anul " +
                 this.getAnApartitie() + ", la editura " + this.getEditura()); // id-ul este 0
-        System.out.println("Cartea " + this.getNumeCarte() + " scrisa de " + Arrays.toString(this.getNumeAutor()) + " cu id-ul " + this.getId() + " a fost publicata in anul " +
+        System.out.println("Cartea " + '\u0022' + this.getNumeCarte() + '\u0022' + " scrisa de " + Arrays.toString(this.getNumeAutor()).replace("[", "").replace("]", "") + " cu id-ul " + this.getId() + " a fost publicata in anul " +
                 this.getAnApartitie() + ", la editura " + this.getEditura()); // id-ul este 101
     }
 }
