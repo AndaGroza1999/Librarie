@@ -1,13 +1,13 @@
 package org.sci;
 
+import org.sci.Util.Rating;
 import org.sci.newModel.Nuvela;
 import org.sci.model.Carte;
 import org.sci.model.Plata;
 import org.sci.model.Utilizator;
 import org.sci.newModel.Roman;
 
-import java.util.Arrays;
-import java.util.Vector;
+import java.util.*;
 
 public class Main {
 
@@ -97,6 +97,19 @@ public class Main {
         v.add(c1);
         for (int i = 0; i < v.size(); i++) {
             System.out.print('\u0022' + v.get(i).getNumeCarte() + '\u0022' + "\n");
+        }
+
+        List<Carte> lista = new ArrayList<>();
+        c1.setPret(17.5);
+        c.setPret(894.4);
+        c2.setPret(85.4);
+        lista.add(c1);
+        lista.add(c);
+        lista.add(c2);
+
+        Collections.sort(lista, new Rating());
+        for(Carte f : lista) {
+            System.out.println(f.getPret());
         }
     }
 
