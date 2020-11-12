@@ -1,4 +1,4 @@
-package org.sci.Util;
+package org.sci.util;
 
 import org.sci.model.Carte;
 
@@ -15,6 +15,5 @@ public class Rating implements Comparator<Carte> {
             return 1;
         }
         return -1;
-
     }
 }

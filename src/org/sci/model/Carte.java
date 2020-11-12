@@ -62,6 +62,13 @@ public class Carte {
         }
     }
 
+    @Override
+    public int hashCode() {
+        int result = Objects.hash(id, numeCarte, anApartitie, nrPagini, pret, stare, editura);
+        result = 31 * result + Arrays.hashCode(numeAutor);
+        return result;
+    }
+
     //Getters and Setters
     public int getId() {
         return id;

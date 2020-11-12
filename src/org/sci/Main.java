@@ -1,6 +1,6 @@
 package org.sci;
 
-import org.sci.Util.Rating;
+import org.sci.util.Rating;
 import org.sci.newModel.Nuvela;
 import org.sci.model.Carte;
 import org.sci.model.Plata;
@@ -78,7 +78,11 @@ public class Main {
         //ROMAN
         //r un obiect de tip Roman
         Roman r = new Roman("Maitreyi", new String[]{"Mircea Eliade"}, 175, 15);
+        System.out.println('\u0022' + r.getNumeCarte() + '\u0022' + " by " + Arrays.toString(r.getNumeAutor()).replace("[", "").replace("]", ""));
+        System.out.println();
 
+        //ARRAY
+        System.out.println("---------------------------------------ARRAY----------------------------------------------");
         Carte[] carte = new Carte[2];
         for (int i = 0; i < carte.length; i++) {
             if (i == 0) {
@@ -87,18 +91,25 @@ public class Main {
                 carte[i] = new Roman("Maitreyi", new String[]{"Mircea Eliade"}, 175, 15);
             }
         }
-        for (int i = 0; i < carte.length; i++) {
-            System.out.println("Cartea " + '\u0022' + carte[i].getNumeCarte() + '\u0022' + " este scrisa de " + Arrays.toString(carte[i].getNumeAutor()).replace("[", "").replace("]", ""));
+        for (Carte ca : carte) {
+            System.out.println("Cartea " + '\u0022' + ca.getNumeCarte() + '\u0022' + " este scrisa de " + Arrays.toString(ca.getNumeAutor()).replace("[", "").replace("]", ""));
         }
         System.out.println();
 
+        //LIST -> VECTOR
+        //afisarea titlurilor cartilor in ordinea in care au fost introduse in vector
+        System.out.println("-----------------------------------LIST -> VECTOR-----------------------------------------");
         Vector<Carte> v = new Vector<Carte>();
         v.add(n1);
         v.add(c1);
-        for (int i = 0; i < v.size(); i++) {
-            System.out.print('\u0022' + v.get(i).getNumeCarte() + '\u0022' + "\n");
+        for (Carte value : v) {
+            System.out.print('\u0022' + value.getNumeCarte() + '\u0022' + "\n");
         }
+        System.out.println();
 
+        //LIST -> ARRAYLIST
+        //afisarea preturilor in ordine crescatoare(de vazut metoda compare din clasa Rating)
+        System.out.println("---------------------------------LIST -> ARRAYLIST---------------------------------------");
         List<Carte> lista = new ArrayList<>();
         c1.setPret(17.5);
         c.setPret(894.4);
@@ -111,8 +122,50 @@ public class Main {
         for(Carte f : lista) {
             System.out.println(f.getPret());
         }
-    }
+        System.out.println();
 
+        //SET -> HASHSET
+        System.out.println("-----------------------------------SET -> HASHSET-----------------------------------------");
+        Set<Carte> hash_Set = new HashSet<Carte>();
+        hash_Set.add(n);
+        hash_Set.add(c);
+        hash_Set.add(r);
+        hash_Set.add(n);
+        hash_Set.add(c1);
+
+        for(Carte s : hash_Set) {
+            System.out.println(s.getNumeCarte()); //am adaugat 5 tipuri de carti, dar s-au afisat doar 4 deoarece n este de 2 ori
+        }
+
+        System.out.println("------------------------------Parcurgerea cu Iterator------------------------------------");
+        Iterator<Carte> it = hash_Set.iterator();
+        while(it.hasNext()) {
+            System.out.println(it.next().getNumeCarte());
+        }
+        System.out.println();
+
+        //MAP -> HASHMAP
+        System.out.println("-----------------------------------MAP -> HASHMAP-----------------------------------------");
+        HashMap<String, Carte> prescurtareNumeCarte = new HashMap<String, Carte>();
+        prescurtareNumeCarte.put("MN", n);
+        prescurtareNumeCarte.put("M", r);
+        prescurtareNumeCarte.put("BO",c);
+
+        for (String i : prescurtareNumeCarte.keySet()) {
+            System.out.println(i);
+        }
+
+        System.out.println("------------------------------Parcurgerea cu Iterator------------------------------------");
+        Iterator<Map.Entry<String, Carte>> itr = prescurtareNumeCarte.entrySet().iterator();
+        while (itr.hasNext()) {
+            Map.Entry<String, Carte> set = itr.next();
+            System.out.println(set.getKey() + " = " + set.getValue().getNumeCarte());
+        }
+//        while(itr.hasNext()) {
+//            System.out.println(itr.next().getKey() + " " + itr.next().getValue().getNumeCarte());
+//        }
+        System.out.println();
+    }
 }
 
 
