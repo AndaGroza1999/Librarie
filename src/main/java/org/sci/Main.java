@@ -203,7 +203,18 @@ public class Main {
         adaugaNuvela(nuvelaList);
 
         afisareCarti2(nuvelaList);
+
+        calcValoare(nuvelaList);
+        calcValoare(lista);
+
+
+        List<Roman> listaRomane = new ArrayList<>();
+        listaRomane.add(r);
+
+        afisareCarti2(listaRomane);
     }
+
+    //IN AFARA MAIN-ULUI
 
     //GENERICE
     public static void afisareCarti1(Set<Carte> book) {
@@ -215,6 +226,7 @@ public class Main {
             System.out.println("Editura: " + cr.getEditura());
             System.out.println("ISBN: " + cr.getId());
             System.out.println("Stare: " + cr.getStare());
+            System.out.println("Pret: " +cr.getPret());
             System.out.println("Numar de pagini: " + cr.getNrPagini());
             System.out.println("Tip coperta: " + cr.getMaterialCoperta());
             if (cr instanceof Roman) {
@@ -239,6 +251,7 @@ public class Main {
             System.out.println("Editura: " + cr.getEditura());
             System.out.println("ISBN: " + cr.getId());
             System.out.println("Stare: " + cr.getStare());
+            System.out.println("Pret: " +cr.getPret());
             System.out.println("Numar de pagini: " + cr.getNrPagini());
             System.out.println("Tip coperta: " + cr.getMaterialCoperta());
             if (cr instanceof Roman) {
@@ -255,6 +268,16 @@ public class Main {
     //LOWER BOUND WILDCARD
     public static void adaugaNuvela(List<? super Nuvela> nvl) {
         nvl.add(new Nuvela("N/A"));
+    }
+
+    public static void calcValoare(List<? super Nuvela> nvl) {
+        Iterator<Carte> it = (Iterator<Carte>) nvl.iterator();
+        double valoare = 0;
+        while (it.hasNext()) {
+            valoare += it.next().getPret();
+        }
+        System.out.println("Valoarea totala a listei este: " + valoare);
+        System.out.println();
     }
 }
 
