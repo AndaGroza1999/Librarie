@@ -5,6 +5,7 @@ import org.sci.model.Carte;
 import org.sci.model.Plata;
 import org.sci.model.Utilizator;
 import org.sci.newModel.Roman;
+import org.sci.repository.CarteRepo;
 
 import java.util.*;
 
@@ -15,7 +16,7 @@ public class Main {
         System.out.println();
         //CARTE
         //c un obiect de tipul Carte
-        Carte<String> c = new Carte<>();
+        Carte c = new Carte();
         c.setNumeCarte("Beautiful Obilivion");
         c.setNumeAutor(new String[]{"Jamie McGuire"});
         c.setStare(true);
@@ -28,7 +29,7 @@ public class Main {
         System.out.println('\u0022' + c.getNumeCarte() + '\u0022' + " by " + Arrays.toString(c.getNumeAutor()).replace("[", "").replace("]", "") + ". Aceasta carte se afla in stoc: " + c.getStare());
 
         //c1 alt obiect de tipul Carte
-        Carte<String> c1 = new Carte<String>();
+        Carte c1 = new Carte();
         c1.setNumeCarte("Beautiful Redemption");
         c1.setNumeAutor(new String[]{"Jamie McGuire"});
         c1.setStare(false);
@@ -212,6 +213,23 @@ public class Main {
         listaRomane.add(r);
 
         afisareCarti2(listaRomane);
+
+        Carte c3 = new Carte();
+        c3.setNumeCarte("Rockstar");
+        c3.setPret(17.48);
+        c3.setNrPagini(336);
+        c3.setId(8);
+        c3.setEditura("Herg Benet");
+
+        CarteRepo carteRepo = new CarteRepo();
+        carteRepo.createCarte(c3);
+        //carteRepo.deleteCarte(c3);
+        //carteRepo.updateCarte(c3);
+        Carte c4 = new Carte();
+        c4.setId(2);
+        Carte c5 = carteRepo.readCarte(c4);
+        System.out.println(c5.getId() + " " + c5.getNumeCarte() + " " + c5.getEditura() + " " + c5.getNrPagini() + " " + c5.getPret());
+
     }
 
     //IN AFARA MAIN-ULUI
@@ -226,7 +244,7 @@ public class Main {
             System.out.println("Editura: " + cr.getEditura());
             System.out.println("ISBN: " + cr.getId());
             System.out.println("Stare: " + cr.getStare());
-            System.out.println("Pret: " +cr.getPret());
+            System.out.println("Pret: " + cr.getPret());
             System.out.println("Numar de pagini: " + cr.getNrPagini());
             System.out.println("Tip coperta: " + cr.getMaterialCoperta());
             if (cr instanceof Roman) {
@@ -251,7 +269,7 @@ public class Main {
             System.out.println("Editura: " + cr.getEditura());
             System.out.println("ISBN: " + cr.getId());
             System.out.println("Stare: " + cr.getStare());
-            System.out.println("Pret: " +cr.getPret());
+            System.out.println("Pret: " + cr.getPret());
             System.out.println("Numar de pagini: " + cr.getNrPagini());
             System.out.println("Tip coperta: " + cr.getMaterialCoperta());
             if (cr instanceof Roman) {
