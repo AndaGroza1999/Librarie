@@ -1,7 +1,6 @@
 package org.sci.service;
 
 import org.sci.newModel.Nuvela;
-import org.sci.newModel.Roman;
 import org.sci.repository.NuvelaRepo;
 
 public class NuvelaService {

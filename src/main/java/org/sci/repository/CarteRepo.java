@@ -1,5 +1,9 @@
 package org.sci.repository;
 
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.core.config.Configurator;
 import org.jetbrains.annotations.NotNull;
 import org.sci.model.Carte;
 import org.sci.util.ConnectionUtil;
@@ -7,6 +11,14 @@ import org.sci.util.ConnectionUtil;
 import java.sql.*;
 
 public class CarteRepo {
+
+    private static final Logger LOGGER = LogManager.getLogger(CarteRepo.class);
+
+//    static {
+//        Configurator.setLevel("org.sci.logger", Level.DEBUG);
+//
+//        Configurator.setRootLevel(Level.DEBUG);
+//    }
 
     @NotNull
     private Connection connection;
@@ -20,7 +32,7 @@ public class CarteRepo {
     public Carte createCarte(Carte carte) {
         //INSERT
         //Varianta hardcode-ata
-        //
+
 //        String sql = ("INSERT INTO BOOKS.book values(7, 'Zece negri mititei', 'N', 'AC', 'Buzz Books', 304, 35.9)");
 //
 //        try (Statement stmnt = connection.createStatement();) {
@@ -48,10 +60,11 @@ public class CarteRepo {
 //            System.out.println("SQL exception: createCarte");
 //            //throwables.printStackTrace();
 //        }
-
+        LOGGER.log(Level.INFO, "Method createCarte starting...");
         String sql = ("INSERT INTO BOOKS.book values(?,    ?,    ?,    ?,    ?,   ?,    ?)");
 
-        try (PreparedStatement stmnt = connection.prepareStatement(sql);) {
+        try (PreparedStatement stmnt = connection.prepareStatement(sql)) {
+            LOGGER.log(Level.DEBUG, "Prepare statement created." + stmnt.toString());
 
             stmnt.setInt(1, carte.getId());
             stmnt.setString(2, carte.getNumeCarte());
@@ -64,11 +77,15 @@ public class CarteRepo {
             stmnt.execute();
 
         } catch (SQLException throwables) {
-            System.out.println("SQL exception: createCarte");
+            LOGGER.log(Level.ERROR, "SQL exception: createCarte" + throwables.getMessage());
+            LOGGER.log(Level.ERROR, throwables);
+            LOGGER.log(Level.ERROR, "SQL exception: createCarte", throwables);
+
+            //System.out.println("SQL exception: createCarte");
             //throwables.printStackTrace();
         }
         return null;
-    }
+    } // aici creaza un sql query pe baza unei conexiuni la baza de date si scrie in baza de date
 
     public Carte readCarte(Carte carte) {
         //SELECT
@@ -141,25 +158,25 @@ public class CarteRepo {
 //            System.out.println("SQL exception: deleteCarte");
 //        }
 
-//        String sql = ("DELETE FROM BOOKS.book WHERE id = " + carte.getId());
-//
-//        try (Statement stmnt = connection.createStatement();) {
-//            stmnt.execute(sql);
-//        } catch (SQLException throwables) {
-//            System.out.println("SQL exception: deleteCarte");
-//        }
+        String sql = ("DELETE FROM BOOKS.book WHERE id = " + carte.getId());
 
-        String sql = ("DELETE FROM BOOKS.book WHERE id = ?");
-
-        try (PreparedStatement stmnt = connection.prepareStatement(sql)) {
-
-            stmnt.setInt(1, carte.getId());
-
-            stmnt.execute();
-
+        try (Statement stmnt = connection.createStatement()) {
+            stmnt.execute(sql);
         } catch (SQLException throwables) {
             System.out.println("SQL exception: deleteCarte");
         }
+
+//        String sql = ("DELETE FROM BOOKS.book WHERE id = ?");
+//
+//        try (PreparedStatement stmnt = connection.prepareStatement(sql)) {
+//
+//            stmnt.setInt(1, carte.getId());
+//
+//            stmnt.execute();
+//
+//        } catch (SQLException throwables) {
+//            System.out.println("SQL exception: deleteCarte");
+//        }
         return false;
     }
 }

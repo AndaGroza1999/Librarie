@@ -7,11 +7,16 @@ import org.sci.model.Utilizator;
 import org.sci.newModel.Roman;
 import org.sci.repository.CarteRepo;
 
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Member;
+import java.lang.reflect.Method;
 import java.util.*;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IllegalAccessException, ClassNotFoundException, InstantiationException, NoSuchMethodException, InvocationTargetException, NoSuchFieldException {
 
         System.out.println();
         //CARTE
@@ -138,9 +143,9 @@ public class Main {
         lista.add(c);
         lista.add(r);
         lista.add(c2);
-        c1.setMaterialCoperta("Carton");
-        c.setMaterialCoperta("Foaie");
-        r.setMaterialCoperta("Carton");
+//        c1.setMaterialCoperta("Carton");
+//        c.setMaterialCoperta("Foaie");
+//        r.setMaterialCoperta("Carton");
 
         //Collections.sort(lista, new Rating()); //-> sorteaza dupa pret
         lista.sort(Comparator.comparing(Carte::getNumeCarte)); //-> sorteaza in ordine alfabetica
@@ -218,17 +223,47 @@ public class Main {
         c3.setNumeCarte("Rockstar");
         c3.setPret(17.48);
         c3.setNrPagini(336);
-        c3.setId(8);
+        c3.setId(15);
         c3.setEditura("Herg Benet");
 
         CarteRepo carteRepo = new CarteRepo();
-        carteRepo.createCarte(c3);
-        //carteRepo.deleteCarte(c3);
-        //carteRepo.updateCarte(c3);
-        Carte c4 = new Carte();
-        c4.setId(2);
-        Carte c5 = carteRepo.readCarte(c4);
-        System.out.println(c5.getId() + " " + c5.getNumeCarte() + " " + c5.getEditura() + " " + c5.getNrPagini() + " " + c5.getPret());
+//        carteRepo.createCarte(c3);
+//        carteRepo.deleteCarte(c3);
+//        carteRepo.updateCarte(c3);
+//        Carte c4 = new Carte();
+//        c4.setId(2);
+//        Carte c5 = carteRepo.readCarte(c4);
+//        System.out.println(c5.getId() + " " + c5.getNumeCarte() + " " + c5.getEditura() + " " + c5.getNrPagini() + " " + c5.getPret());
+
+        System.out.println("------------------------------------------------------------------------------------------");
+
+
+        Class ct = Class.forName("org.sci.model.Carte");
+        Carte o = (Carte) ct.getConstructors()[2].newInstance();
+        for (Member member : ct.getDeclaredFields()) {
+            System.out.println(member.getName());
+        }
+        o.setNumeCarte("ABC");
+        Field f = ct.getDeclaredField("numeCarte");
+        f.setAccessible(true);
+        f.set(o,"DEF");
+        System.out.println(o.getNumeCarte());
+        System.out.println();
+
+        Method m = ct.getDeclaredMethod("bookMethod");
+        m.setAccessible(true);
+        m.invoke(o, null);
+        System.out.println();
+
+
+//        Carte ca = new Carte();
+//
+//        Class book = ca.getClass();
+//        for (Method m1 : book.getMethods()) {
+//            System.out.println(m1.getName());
+//        }
+
+        //System.out.println(book.getConstructors()[2].getAnnotations()[0].toString());
 
     }
 
@@ -246,7 +281,7 @@ public class Main {
             System.out.println("Stare: " + cr.getStare());
             System.out.println("Pret: " + cr.getPret());
             System.out.println("Numar de pagini: " + cr.getNrPagini());
-            System.out.println("Tip coperta: " + cr.getMaterialCoperta());
+//            System.out.println("Tip coperta: " + cr.getMaterialCoperta());
             if (cr instanceof Roman) {
                 System.out.println("Numar capitole: " + ((Roman) cr).getNrCapitole());
             }
@@ -271,7 +306,7 @@ public class Main {
             System.out.println("Stare: " + cr.getStare());
             System.out.println("Pret: " + cr.getPret());
             System.out.println("Numar de pagini: " + cr.getNrPagini());
-            System.out.println("Tip coperta: " + cr.getMaterialCoperta());
+//            System.out.println("Tip coperta: " + cr.getMaterialCoperta());
             if (cr instanceof Roman) {
                 System.out.println("Numar capitole: " + ((Roman) cr).getNrCapitole());
             }

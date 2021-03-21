@@ -1,6 +1,5 @@
 package org.sci.service;
 
-import org.sci.model.Utilizator;
 import org.sci.newModel.Roman;
 import org.sci.repository.RomanRepo;
 

@@ -3,7 +3,7 @@ package org.sci.model;
 import java.util.Arrays;
 import java.util.Objects;
 
-public class Carte<m> {
+public class Carte {
     protected int id;
     private String numeCarte;
     private String[] numeAutor;
@@ -12,7 +12,7 @@ public class Carte<m> {
     private Double pret;
     private boolean stare; //true - in stoc; false - nu se mai afla in stoc(out of stock)
     private String editura;
-    private m materialCoperta;
+//    private m materialCoperta;
 
     //Constructor default/fara parametrii
     public Carte() {
@@ -37,9 +37,9 @@ public class Carte<m> {
         anApartitie = anApar;
     }
 
-    public Carte(m materialCoperta) {
-        this.materialCoperta = materialCoperta;
-    }
+//    public Carte(m materialCoperta) {
+//        this.materialCoperta = materialCoperta;
+//    }
 
     //Constructor cu 3 parametrii
     public Carte(String numC, String[] numeAutor, int nrPag) {
@@ -47,6 +47,11 @@ public class Carte<m> {
         this.numeAutor = numeAutor; //Shadowing
         nrPagini = nrPag;
     }
+
+    private void bookMethod() {
+        System.out.println("bookMethod();");
+    }
+
 
     //Comparam 2 carti intre ele
     @Override
@@ -139,12 +144,12 @@ public class Carte<m> {
         this.editura = editura;
     }
 
-    public m getMaterialCoperta() {
-        return materialCoperta;
-    }
-
-    public void setMaterialCoperta(m materialCoperta) {
-        this.materialCoperta = materialCoperta;
-    }
+//    public m getMaterialCoperta() {
+//        return materialCoperta;
+//    }
+//
+//    public void setMaterialCoperta(m materialCoperta) {
+//        this.materialCoperta = materialCoperta;
+//    }
 
 }

@@ -17,7 +17,7 @@ public class CarteService {
         //transformam in DTO
         return carteRepo.createCarte(carte/*DTO*/);
         //transforma DTO-ul in model si return
-    }
+    } //apeleaza createCarte din repository(vezi packege ul)
 
     public Carte readCarte(Carte carte) {
         return carteRepo.readCarte(carte);
